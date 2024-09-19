@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "modtemplate",
+	"version": "${version}",
+	"name": "Mod template",
+	"description": "Minecraft mod template. Not for publishing",
+	"authors": [
+		"Minecrasher_gg"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.minecrashergg.modtemplate.ModTemplate"
+		],
+		"client": [
+			"net.minecrashergg.modtemplate.modTemplateClient"
+		],
+		"fabric-datagen": [
+			"net.minecrashergg.modtemplate.ModTemplateDataGenerator"
+		]
+	},
+	"mixins": [
+		"modtemplate.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
