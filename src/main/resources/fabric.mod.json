@@ -15,17 +15,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.minecrashergg.modtemplate.ModTemplate"
-		],
-		"client": [
-			"net.minecrashergg.modtemplate.modTemplateClient"
-		],
-		"fabric-datagen": [
-			"net.minecrashergg.modtemplate.ModTemplateDataGenerator"
+			"net.minecrashergg.HotdogHack"
 		]
 	},
 	"mixins": [
-		"modtemplate.mixins.json"
+      "minecrashergg.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",

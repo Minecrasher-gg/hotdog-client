@@ -1,0 +1,21 @@
+{
+	"required": true,
+	"package": "net.minecrashergg.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"AbstractBlockStateMixin",
+		"BiomeMixin",
+		"ClientConnectionMixin",
+		"EntityMixin",
+		"GameMenuScreenMixin",
+		"LightmapTextureManagerMixin",
+		"LivingEntityMixin",
+		"PlayerEntityMixin",
+		"PlayerMoveC2SPacketAccessor",
+		"VehicleMoveC2SPacketAccessor",
+		"WorldMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
