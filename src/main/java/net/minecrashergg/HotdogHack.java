@@ -32,7 +32,7 @@ public class HotdogHack implements ModInitializer {
 		HACKS.add(new XRay());
 		HACKS.add(new NoWeather());
 		HACKS.add(new AntiHunger());
-//		HACKS.add(new KillAura());
+		HACKS.add(new KillAura());
 //		HACKS.add(new Listener());
 
 		ClientTickEvents.START_CLIENT_TICK.register(client ->
