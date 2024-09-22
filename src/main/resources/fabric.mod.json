@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "modtemplate",
+	"id": "hotdogclient",
 	"version": "${version}",
-	"name": "Mod template",
+	"name": "Hotdog Client",
 	"description": "Minecraft mod template. Not for publishing",
 	"authors": [
 		"Minecrasher_gg"

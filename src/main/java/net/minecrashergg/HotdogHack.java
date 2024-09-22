@@ -1,5 +1,6 @@
 package net.minecrashergg;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -11,6 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecrashergg.modules.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,23 +94,30 @@ public class HotdogHack implements ModInitializer {
 	 * @param textRenderer	the renderer of text
 	 * @param age			the age of the player
 	 */
+	private static final Identifier HOTDOG_LOGO = Identifier.of("hotdogclient", "textures/gui/hotdog_logo.png");
+
 	private static void drawWatermark(DrawContext drawContext, TextRenderer textRenderer, int age) {
 		float hue = ((float) age / 200f) % 1f;
 		var color = MathHelper.hsvToRgb(hue, 1f, 1f);
 
+
 		var scale = 1.5f;
 
+		// Draw the logo
+		drawContext.drawTexture(HOTDOG_LOGO, 10, 5, 0, 0, 32, 32, 32, 32); // (texture, x, y, u, v, width, height, textureWidth, textureHeight)
+
+		//draw the text after the logo
 		var matrices = drawContext.getMatrices().peek().getPositionMatrix();
 		matrices.scale(scale);
 
 		textRenderer.draw(
-			Text.translatable("hacks.title"),
-			10, 10,
-			color, true,
-			matrices,
-			drawContext.getVertexConsumers(),
-			TextRenderer.TextLayerType.NORMAL,
-			0, 0xF000F0
+				Text.translatable("hacks.title"),
+				30, 10,  // Offset the text to avoid overlap with the image
+				color, true,
+				matrices,
+				drawContext.getVertexConsumers(),
+				TextRenderer.TextLayerType.NORMAL,
+				0, 0xF000F0
 		);
 
 		matrices.scale(1f / scale);
