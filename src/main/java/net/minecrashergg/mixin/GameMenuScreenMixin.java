@@ -30,7 +30,7 @@ public abstract class GameMenuScreenMixin extends Screen {
 					MinecraftClient.getInstance().setScreen(new HackScreen());
 				}
 			}
-		).position(10, 10).build();
+		).position((int) (this.width / 2.935), (int) (this.height / 5.0)).size((int)204.5, 20).build();
 
 		this.addDrawableChild(buttonWidget);
 	}
