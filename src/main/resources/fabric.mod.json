@@ -3,7 +3,7 @@
 	"id": "hotdogclient",
 	"version": "${version}",
 	"name": "Hotdog Client",
-	"description": "Minecraft mod template. Not for publishing",
+	"description": "Mineccraft utility mod",
 	"authors": [
 		"Minecrasher_gg"
 	],
@@ -23,7 +23,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21.1",
+		"minecraft": ">=1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

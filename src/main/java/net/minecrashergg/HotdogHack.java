@@ -143,24 +143,25 @@ public class HotdogHack implements ModInitializer {
 		var scale = 1.5f;
 
 		// Draw the logo
-		drawContext.drawTexture(HOTDOG_LOGO, 10, 4, 0, 0, 32, 32, 32, 32); // (texture, x, y, u, v, width, height, textureWidth, textureHeight)
+		//drawContext.drawTexture(HOTDOG_LOGO, 10, 4, 0, 0, 32, 32, 32, 32); // (texture, x, y, u, v, width, height, textureWidth, textureHeight)
 
 		//draw the text after the logo
 		var matrices = drawContext.getMatrices().peek().getPositionMatrix();
 		matrices.scale(scale);
 
-		textRenderer.draw(
-				Text.translatable("hacks.title"),
-				30, 10,  // Offset the text to avoid overlap with the image
-				color, true,
-				matrices,
-				drawContext.getVertexConsumers(),
-				TextRenderer.TextLayerType.NORMAL,
-				0, 0xF000F0
-		);
+		//textRenderer.draw(
+		//		Text.translatable("hacks.title"),
+		//		30, 10,  // Offset the text to avoid overlap with the image
+		//		color, true,
+		//		matrices,
+		//		drawContext.getVertexConsumers(),
+		//		TextRenderer.TextLayerType.NORMAL,
+		//		0, 0xF000F0
+		//);
 
 		matrices.scale(1f / scale);
 		drawContext.draw();
+
 	}
 
 	/**

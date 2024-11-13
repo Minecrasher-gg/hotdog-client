@@ -39,7 +39,7 @@ public class ToggleHackButton extends ButtonWidget {
     private int color() {
         boolean isEnabled = HotdogHack.isEnabled(this.hackClass);
         int blue = isEnabled ? ENABLED_BLUE : DISABLED_BLUE;
-        return ColorHelper.Argb.getArgb(255, BASE_RED, BASE_GREEN, blue);
+        return ColorHelper.getArgb(255, BASE_RED, BASE_GREEN, blue);
     }
 
     private static int getButtonWidth(Class<? extends Hack> hackClass) {
