@@ -1,8 +1,6 @@
 package net.minecrashergg.modules;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.ElytraSoundInstance;
-import net.minecraft.entity.mob.ElytraFlightController;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecrashergg.mixin.PlayerMoveC2SPacketAccessor;
