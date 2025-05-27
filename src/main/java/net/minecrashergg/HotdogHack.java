@@ -12,8 +12,13 @@ import java.util.List;
 public class HotdogHack implements ModInitializer {
     public static final String MOD_ID = "hotdogclient";
 
+    public static final Logger LOGGER = LoggerFactory.getLogger("HotdogHack");
+
+    private static final List<Hack> hacks = new ArrayList<>();
+
     @Override
     public void onInitialize() {
+        HudRenderer.init();
         hacks.add(new XRay());
         hacks.add(new FullBright());
         hacks.add(new Speed());
@@ -25,23 +30,6 @@ public class HotdogHack implements ModInitializer {
         hacks.add(new Flight());
         hacks.add(new KillAura());
         hacks.add(new NoFall());
-
-        LOGGER.info("Registered {} hacks.", hacks.size());
-    }
-
-    public static final Logger LOGGER = LoggerFactory.getLogger("HotdogHack");
-
-    private static final List<Hack> hacks = new ArrayList<>();
-
-    public static void init() {
-        // Register all your hacks here:
-        hacks.add(new XRay());
-        hacks.add(new FullBright());
-        hacks.add(new Speed());
-        hacks.add(new Step());
-        hacks.add(new Jesus());
-        hacks.add(new NoWeather());
-        hacks.add(new SuperJump());
 
         LOGGER.info("Registered {} hacks.", hacks.size());
     }

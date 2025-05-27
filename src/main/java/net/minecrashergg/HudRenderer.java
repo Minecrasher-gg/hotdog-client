@@ -37,6 +37,13 @@ public class HudRenderer {
     }
 
     private static void drawWatermark(DrawContext ctx, TextRenderer renderer, int age) {
-        // Keep your cool rainbow/scale watermark drawing here.
+    // Static text at top-left (white with shadow)
+    ctx.drawText(renderer, 
+        Text.translatable("hud.minecrashergg.watermark"), 
+        10, 5,  // X, Y coordinates (5px from top)
+        0xFFFFFF, // White color (0xRRGGBB)
+        true // Shadow enabled
+    );
     }
+
 }

@@ -27,5 +27,7 @@
   "key.hacks.noweather": "Toggle NoWeather",
   "key.hacks.xray": "Toggle X-Ray",
   "key.hacks.antihunger": "Toggle AntiHunger",
-  "key.hacks.killaura": "Toggle KillAura"
+  "key.hacks.killaura": "Toggle KillAura",
+
+  "hud.minecrashergg.watermark": "Hotdog Client v1.2"
 }
