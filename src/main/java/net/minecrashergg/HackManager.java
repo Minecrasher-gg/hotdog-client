@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecrashergg.modules.AntiHunger;
-import net.minecrashergg.modules.BoatFly;
 import net.minecrashergg.modules.Flight;
 import net.minecrashergg.modules.FullBright;
 import net.minecrashergg.modules.Hack;
@@ -24,7 +23,6 @@ public class HackManager {
     public static void init() {
         hacks.add(new Flight());
         hacks.add(new NoFall());
-        hacks.add(new BoatFly());
 		hacks.add(new Speed());
 		hacks.add(new Step());
 		hacks.add(new Jesus());

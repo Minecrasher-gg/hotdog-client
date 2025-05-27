@@ -12,7 +12,6 @@
 		"LivingEntityMixin",
 		"PlayerEntityMixin",
 		"PlayerMoveC2SPacketAccessor",
-		"VehicleMoveC2SPacketAccessor",
 		"WorldMixin"
 	],
 	"injectors": {
