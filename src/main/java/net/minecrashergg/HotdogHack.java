@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HotdogHack implements ModInitializer {
-    public static final String MOD_ID = "hotdogclient";
 
     public static final Logger LOGGER = LoggerFactory.getLogger("HotdogHack");
 
@@ -18,7 +17,6 @@ public class HotdogHack implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        HudRenderer.init();
         hacks.add(new XRay());
         hacks.add(new FullBright());
         hacks.add(new Speed());

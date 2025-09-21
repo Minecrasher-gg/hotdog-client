@@ -16,7 +16,10 @@
 	"entrypoints": {
 		"main": [
 			"net.minecrashergg.HotdogHack"
-		]
+		],
+      "client": [
+        "net.minecrashergg.HudRenderer"
+      ]
 	},
 	"mixins": [
       "minecrashergg.mixins.json"
