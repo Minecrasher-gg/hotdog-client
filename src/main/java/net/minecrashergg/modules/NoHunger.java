@@ -3,7 +3,7 @@ package net.minecrashergg.modules;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.c2s.play.ClientCommandC2SPacket;
 
-public class AntiHunger extends Hack {
+public class NoHunger extends Hack {
     @Override
     public boolean modifyPacket(Packet<?> packet) {
         if (!(packet instanceof ClientCommandC2SPacket commandPacket)) return false;

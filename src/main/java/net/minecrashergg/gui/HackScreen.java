@@ -22,7 +22,7 @@ public class HackScreen extends Screen {
 
         // Add hack buttons
         for (var hack : HotdogHack.getHacks()) {
-            adder.add(new ToggleHackButton(hack.getClass()));
+            adder.add(new ToggleHackButton(hack));
         }
 
         gridWidget.refreshPositions();

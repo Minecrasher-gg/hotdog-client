@@ -1,75 +1,86 @@
 package net.minecrashergg.gui;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.util.math.ColorHelper;
+import net.minecraft.text.Text;
 import net.minecrashergg.HackManager;
-import net.minecrashergg.HotdogHack;
 import net.minecrashergg.modules.Hack;
+import net.minecraft.util.Identifier;
 
 /**
- * Button that toggles a hack class. Uses HotdogHack helpers for text and toggling,
- * and updates the HackManager list when a hack is enabled/disabled.
+ * Button that toggles a hack, adds/removes it from HackManager,
+ * and displays a custom texture for on/off state.
  */
 public class ToggleHackButton extends ButtonWidget {
-    private final Class<? extends Hack> hackClass;
+    private final Hack hackInstance;
+    private static final MinecraftClient MC = MinecraftClient.getInstance();
 
-    private static final int BASE_RED = 100;
-    private static final int BASE_GREEN = 100;
-    private static final int ENABLED_BLUE = 255;
-    private static final int DISABLED_BLUE = 100;
+    private static final String BUTTON_TEXTURE_PATH = "textures/buttons/";
 
-    public ToggleHackButton(Class<? extends Hack> hackClass) {
+    private static final int BUTTON_HEIGHT = 40;  // double height
+    private static final int BUTTON_WIDTH = 200;  // fixed width for uniformity
+
+
+    public ToggleHackButton(Hack hackInstance) {
         super(
                 0, 0,
-                getButtonWidth(hackClass),
-                DEFAULT_HEIGHT,
-                HotdogHack.getTranslatableText(hackClass),            // keep old Text-based label
-                button -> onPress(hackClass),
+                BUTTON_WIDTH,
+                BUTTON_HEIGHT,
+                Text.literal(hackInstance.getFriendlyName()),
+                button -> onPress(hackInstance),
                 DEFAULT_NARRATION_SUPPLIER
         );
-        this.hackClass = hackClass;
+        this.hackInstance = hackInstance;
     }
 
-    private static void onPress(Class<? extends Hack> hackClass) {
-        // Toggle via the existing helper (delegates to HackManager.getHack/toggle)
-        HotdogHack.toggle(hackClass);
+    private static void onPress(Hack hackInstance) {
+        hackInstance.toggle();
 
-        // Resolve the instance and add/remove to our HackManager list
-        Hack instance = HotdogHack.getHack(hackClass);
-        if (instance != null) {
-            if (instance.isEnabled()) {
-                HackManager.addHack(instance);
-            } else {
-                HackManager.removeHack(instance);
-            }
+        if (hackInstance.isEnabled()) {
+            HackManager.addHack(hackInstance);
+        } else {
+            HackManager.removeHack(hackInstance);
         }
     }
 
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        int backgroundColor = color();
-        context.fill(
-                this.getX(), this.getY(),
-                this.getX() + this.getWidth(), this.getY() + DEFAULT_HEIGHT,
-                backgroundColor
-        );
+        // Determine which texture to use based on enabled state
+        String state = hackInstance.isEnabled() ? "on" : "off";
+        String filename = hackInstance.getFriendlyName().toLowerCase() + "_" + state + ".png";
+        //String filename = "test" + "_" + state + ".png";
+        Identifier texture = Identifier.of("hotdogclient", BUTTON_TEXTURE_PATH+filename);
+        // Default fallback
+        Identifier fallbackTexture = Identifier.of("hotdogclient", BUTTON_TEXTURE_PATH+"default_" + state + ".png");
 
-        // draw the label (keeps same behavior as your original)
-        this.drawMessage(context, MinecraftClient.getInstance().textRenderer, 0xFFFFFFFF);
+        var resourceManager = MinecraftClient.getInstance().getResourceManager();
+        try {
+            resourceManager.getResourceOrThrow(texture);
+            // Attempt to draw custom texture
+            context.drawTexture(RenderPipelines.GUI_TEXTURED,
+                    texture,
+                    this.getX(), this.getY(),
+                    0, 0,
+                    this.getWidth(), this.getHeight(),
+                    this.getWidth(), this.getHeight());
+        } catch (Exception e) {
+            context.drawTexture(RenderPipelines.GUI_TEXTURED,
+                    fallbackTexture,
+                    this.getX(), this.getY(),
+                    0, 0,
+                    this.getWidth(), this.getHeight(),
+                    this.getWidth(), this.getHeight());
+        }
+
+        // Draw the text label on top
+        //this.drawMessage(context, MC.textRenderer, 0xFFFFFFFF);
     }
 
-    private int color() {
-        boolean isEnabled = HotdogHack.isEnabled(this.hackClass);
-        int blue = isEnabled ? ENABLED_BLUE : DISABLED_BLUE;
-        return ColorHelper.getArgb(255, BASE_RED, BASE_GREEN, blue);
-    }
-
-    private static int getButtonWidth(Class<? extends Hack> hackClass) {
-        MinecraftClient mc = MinecraftClient.getInstance();
-        if (mc == null || mc.textRenderer == null) return DEFAULT_WIDTH_SMALL;
-        int textWidth = mc.textRenderer.getWidth(HotdogHack.getTranslatableText(hackClass));
+    private static int getButtonWidth(Hack hackInstance) {
+        if (MC == null || MC.textRenderer == null) return DEFAULT_WIDTH_SMALL;
+        int textWidth = MC.textRenderer.getWidth(hackInstance.getFriendlyName());
         return Math.max(DEFAULT_WIDTH_SMALL, textWidth + 10);
     }
 }

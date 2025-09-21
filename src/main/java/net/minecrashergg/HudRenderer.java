@@ -34,7 +34,7 @@ public class HudRenderer implements ClientModInitializer {
             context.fill(4, 4, width + 12, height + 12, 0x90000000); // Logo background
             context.fill(width + 15, 4, width + bgWidth + 15, 12 + 4, 0x90000000); // Text background
             if (!HackManager.getActiveHacks().isEmpty()) {
-                context.fill(4, height + 16, width + width / 3 + 8, height + 22 + ActiveHacksindex * 10, 0x90000000); // Active hacks background
+                context.fill(4, height + 16, width + width / 3 + 10, height + 22 + ActiveHacksindex * 10, 0x90000000); // Active hacks background
             }
 
             // Switch to the "up layer" so text isn't hidden

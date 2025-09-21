@@ -57,4 +57,8 @@ public abstract class Hack {
      * Is called at {@code END_CLIENT_TICK}
      */
     public void postTick() { }
+
+    public String getFriendlyName() {
+        return this.getClass().getSimpleName(); // e.g., "Speed", "FullBright"
+    }
 }

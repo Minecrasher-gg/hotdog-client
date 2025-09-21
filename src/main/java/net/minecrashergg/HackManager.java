@@ -41,7 +41,6 @@ public class HackManager {
      * Converts a hack instance to a simplified lowercase name.
      */
     private static String toFriendlyName(Hack hack) {
-        String className = hack.getClass().getSimpleName();
-        return className.toLowerCase(); // e.g., "Speed" -> "speed"
+        return hack.getClass().getSimpleName();
     }
 }

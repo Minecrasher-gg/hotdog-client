@@ -2,7 +2,6 @@ package net.minecrashergg;
 
 import net.minecrashergg.modules.*;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +23,7 @@ public class HotdogHack implements ModInitializer {
         hacks.add(new Jesus());
         hacks.add(new NoWeather());
         hacks.add(new SuperJump());
-        hacks.add(new AntiHunger());
+        hacks.add(new NoHunger());
         hacks.add(new Flight());
         hacks.add(new KillAura());
         hacks.add(new NoFall());
@@ -55,9 +54,5 @@ public class HotdogHack implements ModInitializer {
         if (hack != null) {
             hack.toggle();
         }
-    }
-
-    public static Text getTranslatableText(Class<? extends Hack> hackClass) {
-        return Text.translatable("hotdoghack." + hackClass.getSimpleName().toLowerCase());
     }
 }
