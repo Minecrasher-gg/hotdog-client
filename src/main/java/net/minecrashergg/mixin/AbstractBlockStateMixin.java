@@ -6,7 +6,9 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+// NOTE: use CollisionView import instead of BlockView for the collision method
 import net.minecraft.world.BlockView;
+import net.minecraft.world.CollisionView;
 import net.minecrashergg.HotdogHack;
 import net.minecrashergg.modules.Jesus;
 import net.minecrashergg.modules.XRay;
@@ -22,11 +24,9 @@ public abstract class AbstractBlockStateMixin {
 
     @Shadow public abstract Block getBlock();
 
-    @Inject(method = "getCollisionShape(Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/ShapeContext;)Lnet/minecraft/util/shape/VoxelShape;",
-            at = @At("HEAD"),
-            cancellable = true,
-            remap = false)
-    void getCollisionShape(BlockView world, BlockPos pos, ShapeContext context, CallbackInfoReturnable<VoxelShape> cir) {
+    // REMOVED remap = false and changed param type to CollisionView
+    @Inject(method = "getCollisionShape", at = @At("HEAD"), cancellable = true)
+    private void getCollisionShape(BlockView world, BlockPos pos, CallbackInfoReturnable<VoxelShape> cir) {
         if (getFluidState().isEmpty()) return;
 
         var client = MinecraftClient.getInstance();
